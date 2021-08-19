@@ -140,7 +140,7 @@ export default class VDA5050ToInOrbitProxy {
    */
   reportVelocity = async (robotId, velocity, ts) => {
     if (velocity) {
-      await this.#inorbit.publishOdometry(robotId, {
+      return this.#inorbit.publishOdometry(robotId, {
         tsStart: ts,
         ts,
         speed: {
@@ -160,7 +160,7 @@ export default class VDA5050ToInOrbitProxy {
    */
   reportPose = async (robotId, agvPosition, ts) => {
     if (agvPosition) {
-      await this.#inorbit.publishPose(robotId, {
+      return this.#inorbit.publishPose(robotId, {
         ts,
         x: agvPosition.x,
         y: agvPosition.y,
