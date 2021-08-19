@@ -138,7 +138,7 @@ export default class VDA5050ToInOrbitProxy {
    * @param {import("vda-5050-lib").Velocity} velocity VDA 5050 Velocity object
    * @param {number} ts Timestamp in milliseconds
    */
-  reportVelocity = async (velocity, robotId, ts) => {
+  reportVelocity = async (robotId, velocity, ts) => {
     if (velocity) {
       await this.#inorbit.publishOdometry(robotId, {
         tsStart: ts,
@@ -158,7 +158,7 @@ export default class VDA5050ToInOrbitProxy {
    * @param {import("vda-5050-lib").AgvPosition} agvPosition VDA 5050 position object
    * @param {number} ts Timestamp in milliseconds
    */
-  reportPose = async (agvPosition, robotId, ts) => {
+  reportPose = async (robotId, agvPosition, ts) => {
     if (agvPosition) {
       await this.#inorbit.publishPose(robotId, {
         ts,
