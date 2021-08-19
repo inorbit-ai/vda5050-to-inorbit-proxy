@@ -1,0 +1,34 @@
+{
+  "name": "vda5050-to-inorbit-proxy",
+  "version": "0.1.0",
+  "description": "VDA 5050 to InOrbit Proxy",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "start-dev": "babel-watch src/index.js",
+    "linter": "eslint src/"
+  },
+  "author": "support@inorbit.ai",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "babel-eslint": "^10.1.0",
+    "babel-watch": "^7.5.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "vda-5050-cli": "^2.0.13"
+  },
+  "dependencies": {
+    "@inorbit/cloud-sdk": "^0.1.4",
+    "vda-5050-lib": "^1.0.6"
+  }
+}
