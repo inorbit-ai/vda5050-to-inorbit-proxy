@@ -9,7 +9,7 @@
     "linter": "eslint src/"
   },
   "author": "support@inorbit.ai",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.11.5",
     "@babel/core": "^7.11.5",
