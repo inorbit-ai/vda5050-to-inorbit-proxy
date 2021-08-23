@@ -29,6 +29,8 @@ npm start
 The `demo/` folder includes a script with a set of synthetic data points for simulating a `VDA5050` compatible `AVG`. In order to run the simulation execute the following command:
 
 ```console
+export VDA5050_AVG_MANUFACTURER = "RobotCompany",
+export VDA5050_AVG_SERIAL_NUMBER = "001",
 npm run demo
 ```
 
@@ -37,7 +39,7 @@ Additionally, an image that serves as a map is provided. It can be uploaded by u
 ```bash
 export INORBIT_API_URL="http://api.inorbit.ai"
 export INORBIT_APP_KEY="abcd1234abcd1234"
-export INORBIT_ROBOT_ID="123456789"
+export INORBIT_ROBOT_ID="vda-RobotCompany-001"
 
 cd demo/
 
