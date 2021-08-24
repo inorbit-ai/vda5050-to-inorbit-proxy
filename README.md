@@ -26,7 +26,7 @@ npm start
 
 ## Simulating a VDA 5050 robot
 
-The `demo/` folder includes a script with a set of synthetic data points for simulating a `VDA5050` compatible `AVG`. In order to run the simulation execute the following command:
+The `demo/` folder includes a script with a set of synthetic data points for simulating a `VDA5050` compatible `AVG`. In order to run the simulation execute the following commands:
 
 ```console
 export VDA5050_AVG_MANUFACTURER = "RobotCompany",
