@@ -34,7 +34,7 @@ export VDA5050_AVG_SERIAL_NUMBER = "001",
 npm run demo
 ```
 
-Additionally, an image that serves as a map is provided. It can be uploaded by using the [InOrbit API](https://api.inorbit.ai/docs/index.html#operation/postMap).
+Additionally, an image that serves as a map is provided. It can be uploaded by using the [InOrbit API](https://api.inorbit.ai/docs/index.html#operation/postMap). Run the following commands to upload the map to InOrbit:
 
 ```bash
 export INORBIT_API_URL="http://api.inorbit.ai"
