@@ -31,7 +31,7 @@ The `demo/` folder includes a script with a set of synthetic data points for sim
 ```console
 export VDA5050_AVG_MANUFACTURER = "RobotCompany",
 export VDA5050_AVG_SERIAL_NUMBER = "001",
-npm run demo
+npm run robot-sim-demo
 ```
 
 Additionally, an image that serves as a map is provided. It can be uploaded by using the [InOrbit API](https://api.inorbit.ai/docs/index.html#operation/postMap). Run the following commands to upload the map to InOrbit:
