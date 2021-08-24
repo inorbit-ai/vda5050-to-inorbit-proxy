@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node src/index.js",
     "start-dev": "babel-watch src/index.js",
-    "linter": "eslint src/"
+    "linter": "eslint src/",
+    "robot-sim-demo": "babel-node demo/index.js"
   },
   "author": "support@inorbit.ai",
   "license": "MIT",

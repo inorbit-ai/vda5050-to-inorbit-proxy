@@ -21,5 +21,31 @@ The service reads its configuration from the following environment variables:
 To run the service execute the following command:
 
 ```console
-$ npm start
+npm start
+```
+
+## Simulating a VDA 5050 robot
+
+The `demo/` folder includes a script with a set of synthetic data points for simulating a `VDA5050` compatible `AVG`. In order to run the simulation execute the following commands:
+
+```console
+export VDA5050_AVG_MANUFACTURER = "RobotCompany",
+export VDA5050_AVG_SERIAL_NUMBER = "001",
+npm run robot-sim-demo
+```
+
+Additionally, an image that serves as a map is provided. It can be uploaded by using the [InOrbit API](https://api.inorbit.ai/docs/index.html#operation/postMap). Run the following commands to upload the map to InOrbit:
+
+```bash
+export INORBIT_API_URL="http://api.inorbit.ai"
+export INORBIT_APP_KEY="abcd1234abcd1234"
+export INORBIT_ROBOT_ID="vda-RobotCompany-001"
+
+cd demo/
+
+$ curl --location --request POST "${INORBIT_API_URL}/robots/${INORBIT_ROBOT_ID}/maps" \
+  --header "x-auth-inorbit-app-key: ${INORBIT_APP_KEY}" \
+  --form 'metadata="{\"mapId\":\"map\", \"label\": \"map\", \"resolution\": 0.1, \"x\": 0, \"y\": 0}"' \
+  --form 'image=@"./map.png"'
+""
 ```
