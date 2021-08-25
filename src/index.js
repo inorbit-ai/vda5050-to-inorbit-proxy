@@ -25,7 +25,7 @@
  * Cloud SDK.
  */
 import { MasterController, Topic } from 'vda-5050-lib';
-import InOrbit from '@inorbit/cloud-sdk';
+import { InOrbit } from '@inorbit/cloud-sdk';
 
 import VDA5050ToInOrbitProxy from './vda5050ToIOProxy';
 
