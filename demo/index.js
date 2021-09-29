@@ -128,7 +128,7 @@ async function main () {
             },
             velocity: {}}, { dropIfOffline: true });
         await agvClient.publish(Topic.State, {
-            batteryState: { batteryCharge: element.battery.charge, charging: element.battery.charging },
+            batteryState: { batteryCharge: element.battery.charge, charging: element.battery.charging, batteryVoltage: 12.2 },
             orderId: "1",
             orderUpdateId: 0,
             lastNodeId: "0",
@@ -141,6 +141,7 @@ async function main () {
             ],
             operatingMode: OperatingMode.Automatic,
             errors: [],
+            loads: [],
             safetyState: { eStop: EStop.None, fieldViolation: false }
         });
         await sleep(1000);
