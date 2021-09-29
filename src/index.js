@@ -21,11 +21,11 @@
  */
 
 /**
- *This service translates messages from the VDA 5050 to InOrbit using the InOrbit
- * Cloud SDK.
+ * This service translates messages from the VDA 5050 to InOrbit using the InOrbit
+ * Edge SDK.
  */
 import { MasterController, Topic } from 'vda-5050-lib';
-import InOrbit from '@inorbit/cloud-sdk';
+import { InOrbit } from '@inorbit/edge-sdk';
 
 import VDA5050ToInOrbitProxy from './vda5050ToIOProxy';
 

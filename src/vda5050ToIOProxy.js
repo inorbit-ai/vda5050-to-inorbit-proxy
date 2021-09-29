@@ -30,7 +30,7 @@
  */
 export default class VDA5050ToInOrbitProxy {
   /**
-   * InOrbit Cloud SDK instance
+   * InOrbit Edge SDK instance
    *
    * @type {InOrbit}
    */
@@ -38,7 +38,7 @@ export default class VDA5050ToInOrbitProxy {
 
   /**
    * Initializes this instance
-   * @param {InOrbit} inorbit Already initialized instance of InOrbit Cloud SDK.
+   * @param {InOrbit} inorbit Already initialized instance of InOrbit Edge SDK.
    */
   constructor(inorbit) {
     this.#inorbit = inorbit;

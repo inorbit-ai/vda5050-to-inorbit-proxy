@@ -1,7 +1,7 @@
 # VDA 5050 to InOrbit Proxy
 
 This service translates messages from the VDA 5050 to InOrbit using the [InOrbit
-Cloud SDK](https://www.npmjs.com/package/@inorbit/cloud-sdk).
+Edge SDK](https://www.npmjs.com/package/@inorbit/edge-sdk).
 
 When the service runs, it connects to the VDA 5050 MQTT broker and subscribes to
 messages from any robot. The data in connection, state and visualization messages
