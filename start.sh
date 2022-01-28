@@ -19,5 +19,15 @@ if  [[ -z "${VDA5050_BROKER_URL}" ]]; then
   exit
 fi
 
+if  [[ -z "${VDA5050_BROKER_USERNAME}" ]]; then
+  echo "Your VDA5050_BROKER_USERNAME environment variable is not set"
+  echo 'Not using an username to connect to the vda5050 broker' 
+fi
+
+if  [[ -z "${VDA5050_BROKER_PASSWORD}" ]]; then
+  echo "Your VDA5050_BROKER_PASSWORD environment variable is not set"
+  echo 'Not using a password to connect to the vda5050 broker' 
+fi
+
 echo 'Starting container ...'
-docker run --env INORBIT_APP_KEY --env VDA5050_INTERFACE_NAME --env VDA5050_BROKER_URL -d --net='host' inorbit:vda5050-to-inorbit-proxy
+docker run --env INORBIT_APP_KEY --env VDA5050_INTERFACE_NAME --env VDA5050_BROKER_URL --env VDA5050_BROKER_USERNAME --env VDA5050_BROKER_PASSWORD -d --net='host' inorbit:vda5050-to-inorbit-proxy
