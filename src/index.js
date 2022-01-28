@@ -52,7 +52,9 @@ async function main() {
     INORBIT_APP_KEY: appKey,
     INORBIT_ENDPOINT: endpoint,
     VDA5050_INTERFACE_NAME: interfaceName = 'uagv',
-    VDA5050_BROKER_URL: brokerUrl = 'mqtt://localhost:1883'
+    VDA5050_BROKER_URL: brokerUrl = 'mqtt://localhost:1883',
+    VDA5050_BROKER_USERNAME: username,
+    VDA5050_BROKER_PASSWORD: password
   } = process.env;
 
   // Setup InOrbit
@@ -63,7 +65,7 @@ async function main() {
   const proxy = new VDA5050ToInOrbitProxy(inorbit);
 
   // Start a VDA 5050 Master that can subscribe to interesting topics
-  const mcClient = new MasterController({ interfaceName, transport: { brokerUrl } });
+  const mcClient = new MasterController({ interfaceName, transport: { brokerUrl, username, password } },);
   await mcClient.start();
 
   // Subscribe to connection, state and visualization messages from any AGV and
