@@ -103,14 +103,16 @@ async function main () {
         VDA5050_AVG_MANUFACTURER: avg_manufacturer = "RobotCompany",
         VDA5050_AVG_SERIAL_NUMBER: avg_serial_number = "001",
         VDA5050_INTERFACE_NAME: interfaceName = 'uagv',
-        VDA5050_BROKER_URL: brokerUrl = 'mqtt://localhost:1883'
+        VDA5050_BROKER_URL: brokerUrl = 'mqtt://localhost:1883',
+        VDA5050_BROKER_USERNAME: username,
+        VDA5050_BROKER_PASSWORD: password
     } = process.env;
 
     // The target AGV.
     const agvId = { manufacturer: avg_manufacturer, serialNumber: avg_serial_number };
     
-    // Create instance of AGV Client with minimal options: communication namespace and broker endpoint address.
-    const agvClient = new AgvClient(agvId, { interfaceName: interfaceName, transport: { brokerUrl: brokerUrl } });
+    // Create instance of AGV Client with minimal options: communication namespace, broker endpoint address, broker username and password.
+    const agvClient = new AgvClient(agvId, { interfaceName: interfaceName, transport: { brokerUrl: brokerUrl, username, password } });
     
     // Start client interaction, connect to MQTT broker.
     await agvClient.start();
