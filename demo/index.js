@@ -111,7 +111,7 @@ async function main () {
     // The target AGV.
     const agvId = { manufacturer: avg_manufacturer, serialNumber: avg_serial_number };
     
-    // Create instance of AGV Client with minimal options: communication namespace and broker endpoint address.
+    // Create instance of AGV Client with minimal options: communication namespace, broker endpoint address, broker username and password.
     const agvClient = new AgvClient(agvId, { interfaceName: interfaceName, transport: { brokerUrl: brokerUrl, username, password } });
     
     // Start client interaction, connect to MQTT broker.
