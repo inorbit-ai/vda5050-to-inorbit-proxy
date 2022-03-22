@@ -191,7 +191,13 @@ export default class VDA5050ToInOrbitProxy {
           const { controlPoints } = e.trajectory;
           const start = controlPoints[0];
           const end = controlPoints[controlPoints.length - 1];
-          points.push({ x: start.x, y: start.y });
+          if (points.length == 0 || (
+            points[points.length - 1].x != start.x
+            && points[points.length - 1].y != start.y
+          )) {
+            // Add point only if it's different from the previous last point
+            points.push({ x: start.x, y: start.y });
+          }
           points.push({ x: end.x, y: end.y });
         }
       });

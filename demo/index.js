@@ -141,7 +141,7 @@ async function main () {
                 {
                     edgeId: '0',
                     sequenceId: 0,
-                    released: false,
+                    released: true,
                     trajectory: {
                         degree: 1,
                         knotVector: [0],
