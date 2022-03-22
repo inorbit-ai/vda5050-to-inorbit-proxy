@@ -171,6 +171,13 @@ export default class VDA5050ToInOrbitProxy {
     }
   }
 
+  /**
+   * Reports VDA 5050 path to InOrbit
+   *
+   * @param {string} robotId InOrbit robot Id
+   * @param {import("vda-5050-lib").EdgeState[]} edgeStates VDA 5050 edge states
+   * @param {number} ts Timestamp in milliseconds
+   */
   reportPaths = async (robotId, edgeStates, ts) => {
     const points = [];
     if (Array.isArray(edgeStates)) {
