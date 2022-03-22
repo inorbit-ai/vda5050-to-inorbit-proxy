@@ -144,7 +144,7 @@ async function main () {
                     released: true,
                     trajectory: {
                         degree: 1,
-                        knotVector: [0],
+                        knotVector: [0, 0, 0, 0],
                         controlPoints: [
                             { x: 0, y: 0, weight: 1 },
                             { x: 10, y: 30, weight: 1},
