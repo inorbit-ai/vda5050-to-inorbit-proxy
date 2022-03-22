@@ -190,7 +190,6 @@ export default class VDA5050ToInOrbitProxy {
       });
     }
     const msg = { ts, paths: [{ pathId: '0', ts, points }] };
-    console.log('reporting paths', JSON.stringify(msg));
     return this.#inorbit.publishPaths(robotId, msg);
   }
 }
