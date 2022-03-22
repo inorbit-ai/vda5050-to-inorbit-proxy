@@ -1,6 +1,6 @@
 {
   "name": "vda5050-to-inorbit-proxy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "VDA 5050 to InOrbit Proxy",
   "main": "src/index.js",
   "scripts": {
