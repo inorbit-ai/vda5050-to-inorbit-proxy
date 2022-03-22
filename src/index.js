@@ -49,7 +49,7 @@ function anonymizeUri(uri) {
 async function main() {
   // Read configuration from environment
   const {
-    INORBIT_APP_KEY: appKey,
+    INORBIT_API_KEY: apiKey,
     INORBIT_ENDPOINT: endpoint,
     VDA5050_INTERFACE_NAME: interfaceName = 'uagv',
     VDA5050_BROKER_URL: brokerUrl = 'mqtt://localhost:1883',
@@ -58,7 +58,7 @@ async function main() {
   } = process.env;
 
   // Setup InOrbit
-  const inorbit = new InOrbit({ appKey, endpoint });
+  const inorbit = new InOrbit({ apiKey, endpoint });
 
   // Create the proxy object that takes care of translating VDA 5050 messages
   // to InOrbit
