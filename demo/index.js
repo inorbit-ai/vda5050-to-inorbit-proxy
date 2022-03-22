@@ -136,7 +136,22 @@ async function main () {
             lastNodeId: "0",
             lastNodeSequenceId: 0,
             nodeStates: [],
-            edgeStates: [],
+            edgeStates: [
+                // Example trajectory that translates to a path
+                {
+                    edgeId: '0',
+                    sequenceId: 0,
+                    released: true,
+                    trajectory: {
+                        degree: 1,
+                        knotVector: [0, 0, 0, 0],
+                        controlPoints: [
+                            { x: 0, y: 0, weight: 1 },
+                            { x: 10, y: 30, weight: 1},
+                        ]
+                    }
+                }
+            ],
             driving: true,
             actionStates: [
                 { actionId: element.status, actionStatus: element.status }

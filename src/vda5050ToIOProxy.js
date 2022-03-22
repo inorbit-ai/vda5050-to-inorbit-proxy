@@ -74,7 +74,7 @@ export default class VDA5050ToInOrbitProxy {
    */
   processStateMessage = async (msg) => {
     const { manufacturer, serialNumber, timestamp, agvPosition, batteryState,
-      errors, loads, operatingMode, velocity } = msg;
+      errors, loads, operatingMode, velocity, edgeStates } = msg;
     const { batteryCharge, batteryVoltage, batteryHealth } = batteryState;
 
     const robotId = this.generateInorbitId(manufacturer, serialNumber);
@@ -83,6 +83,7 @@ export default class VDA5050ToInOrbitProxy {
     return Promise.all([
       this.reportPose(robotId, agvPosition, ts),
       this.reportVelocity(robotId, velocity, ts),
+      this.reportPaths(robotId, edgeStates, ts),
       this.#inorbit.publishCustomDataKV(robotId, {
         operatingMode,
         batteryCharge,
@@ -168,5 +169,40 @@ export default class VDA5050ToInOrbitProxy {
         frameId: agvPosition.mapId
       });
     }
+  }
+
+  /**
+   * Reports VDA 5050 path to InOrbit
+   *
+   * @param {string} robotId InOrbit robot Id
+   * @param {import("vda-5050-lib").EdgeState[]} edgeStates VDA 5050 edge states
+   * @param {number} ts Timestamp in milliseconds
+   */
+  reportPaths = async (robotId, edgeStates, ts) => {
+    const points = [];
+    if (Array.isArray(edgeStates)) {
+      edgeStates.forEach((e) => {
+        if (e.released && e.trajectory && Array.isArray(e.trajectory.controlPoints)
+          && e.trajectory.controlPoints.length >= 2) {
+          // edge in base, not-yet-traversed. Let's use the first and last control points
+          // in the trajectory to build the path
+          // TODO(mike) we are ignoring all the complexities about working with NURBS
+          // check the standard for more details about how trajectories are represented
+          const { controlPoints } = e.trajectory;
+          const start = controlPoints[0];
+          const end = controlPoints[controlPoints.length - 1];
+          if (points.length == 0
+            || points[points.length - 1].x != start.x
+            || points[points.length - 1].y != start.y
+          ) {
+            // Add point only if it's different from the previous last point
+            points.push({ x: start.x, y: start.y });
+          }
+          points.push({ x: end.x, y: end.y });
+        }
+      });
+    }
+    const msg = { ts, paths: [{ pathId: '0', ts, points }] };
+    return this.#inorbit.publishPaths(robotId, msg);
   }
 }

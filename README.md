@@ -12,7 +12,7 @@ is sent to InOrbit.
 
 The service reads its configuration from the following environment variables:
 
-* `INORBIT_APP_KEY`: InOrbit App Key.
+* `INORBIT_API_KEY`: InOrbit API Key.
 * `VDA5050_INTERFACE_NAME` VDA 5050 interface name, default is `uagv`.
 * `VDA5050_BROKER_URL`: MQTT broker URL, default is `mqtt://localhost:1883`.
 

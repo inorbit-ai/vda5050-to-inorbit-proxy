@@ -1,9 +1,9 @@
 #!/bin/bash
 # This script starts a container with the required environment variables to make the vda5050-to-inorbit-proxy work
 
-if  [[ -z "${INORBIT_APP_KEY}" ]]; then
-  echo "Please, set your INORBIT_APP_KEY environment variable"
-  echo 'use: export INORBIT_APP_KEY="your-INORBIT_APP_KEY-here" and re-run this script' 
+if  [[ -z "${INORBIT_API_KEY}" ]]; then
+  echo "Please, set your INORBIT_API_KEY environment variable"
+  echo 'use: export INORBIT_API_KEY="your-INORBIT_API_KEY-here" and re-run this script' 
   exit
 fi
 
@@ -30,4 +30,4 @@ if  [[ -z "${VDA5050_BROKER_PASSWORD}" ]]; then
 fi
 
 echo 'Starting container ...'
-docker run --env INORBIT_APP_KEY --env VDA5050_INTERFACE_NAME --env VDA5050_BROKER_URL --env VDA5050_BROKER_USERNAME --env VDA5050_BROKER_PASSWORD -d --net='host' inorbit:vda5050-to-inorbit-proxy
+docker run --env INORBIT_API_KEY --env VDA5050_INTERFACE_NAME --env VDA5050_BROKER_URL --env VDA5050_BROKER_USERNAME --env VDA5050_BROKER_PASSWORD -d --net='host' inorbit:vda5050-to-inorbit-proxy
