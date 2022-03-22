@@ -182,9 +182,9 @@ export default class VDA5050ToInOrbitProxy {
     const points = [];
     if (Array.isArray(edgeStates)) {
       edgeStates.forEach((e) => {
-        if (!e.released && e.trajectory && Array.isArray(e.trajectory.controlPoints)
+        if (e.released && e.trajectory && Array.isArray(e.trajectory.controlPoints)
           && e.trajectory.controlPoints.length >= 2) {
-          // edge in horizon, not-yet-traversed. Let's use the first and last control points
+          // edge in base, not-yet-traversed. Let's use the first and last control points
           // in the trajectory to build the path
           // TODO(mike) we are ignoring all the complexities about working with NURBS
           // check the standard for more details about how trajectories are represented
