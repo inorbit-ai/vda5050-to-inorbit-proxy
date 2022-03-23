@@ -29,7 +29,7 @@
     "vda-5050-cli": "^2.0.13"
   },
   "dependencies": {
-    "@inorbit/edge-sdk": "^0.3.1",
+    "@inorbit/edge-sdk": "^0.3.2",
     "vda-5050-lib": "^1.0.6"
   }
 }
