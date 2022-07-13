@@ -24,7 +24,7 @@
  * This service translates messages from the VDA 5050 to InOrbit using the InOrbit
  * Edge SDK.
  */
-import { MasterController, Topic } from 'vda-5050-lib';
+import { MasterController, Topic, BlockingType, Order, AgvId } from 'vda-5050-lib';
 import { InOrbit } from '@inorbit/edge-sdk';
 
 import VDA5050ToInOrbitProxy from './vda5050ToIOProxy';
@@ -92,6 +92,33 @@ async function main() {
     } catch (e) {
       console.warn('Error processing visualization message', e, msg);
     }
+  });
+
+  proxy.registerInOrbitCallback('ros/loc/nav_goal', async (topic, message) => {
+    console.log(message.toString());
+    const agvId_ = { manufacturer: "OTTO", serialNumber: "SN111" };
+
+    // Define a pick & drop order with two base nodes and one base edge.
+    const order_ = {
+      orderId: mcClient.createUuid(),
+      orderUpdateId: 0,
+      nodes: [
+        {
+          nodeId: "productionunit_1", sequenceId: 0, released: true, nodePosition: { x: 0, y: 0, mapId: "map" },
+          actions: [{ actionId: "a001", actionType: "pick", blockingType: BlockingType.Hard, actionParameters: [{ key: "stationType", value: "floor" }, { key: "loadType", value: "EPAL" }] }],
+        },
+        {
+          nodeId: "productionunit_2", sequenceId: 2, released: true, nodePosition: { x: 100, y: 200, mapId: "map" },
+          actions: [{ actionId: "a002", actionType: "drop", blockingType: BlockingType.Hard, actionParameters: [{ key: "stationType", value: "floor" }, { key: "loadType", value: "EPAL" }] }],
+        },
+      ],
+      edges: [
+        { edgeId: "productionunit_1_2", sequenceId: 1, startNodeId: "productionunit_1", endNodeId: "productionunit_2", released: true, actions: [] },
+      ],
+    };
+
+    const orderWithHeader = await mcClient.publish(Topic.Order, agvId_, order_);
+    console.log("Published order %o", orderWithHeader);
   });
 
   console.log(`Proxy service started: Listening to VDA 5050 messages on ${anonymizeUri(brokerUrl)} interface name ${interfaceName}`);

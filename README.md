@@ -7,7 +7,6 @@ When the service runs, it connects to the VDA 5050 MQTT broker and subscribes to
 messages from any robot. The data in connection, state and visualization messages
 is sent to InOrbit.
 
-
 ## Settings
 
 The service reads its configuration from the following environment variables:

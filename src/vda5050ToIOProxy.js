@@ -20,6 +20,8 @@
  *
  */
 
+ import { Topic } from 'vda-5050-lib';
+
 /**
  * This module provides the VDA5050ToInOrbitProxy class that takes care of the
  * translation between VDA 5050 and InOrbit
@@ -42,6 +44,7 @@ export default class VDA5050ToInOrbitProxy {
    */
   constructor(inorbit) {
     this.#inorbit = inorbit;
+    this.callbacks = {}
   }
 
   /**
@@ -64,6 +67,11 @@ export default class VDA5050ToInOrbitProxy {
    */
   generateRobotName(manufacturer, serialNumber) {
     return `${manufacturer}-${serialNumber}`;
+  }
+
+  registerInOrbitCallback = (topic, func) => {
+    console.log(`Adding callback for topic ${topic}`);
+    this.callbacks[topic] = func;
   }
 
   /**
@@ -105,10 +113,17 @@ export default class VDA5050ToInOrbitProxy {
     const { manufacturer, serialNumber } = msg;
 
     if (msg.connectionState == 'ONLINE') {
-      return this.#inorbit.connectRobot({
-        robotId: this.generateInorbitId(manufacturer, serialNumber),
+      const robotId = this.generateInorbitId(manufacturer, serialNumber);
+      await this.#inorbit.connectRobot({
+        robotId,
         name: this.generateRobotName(manufacturer, serialNumber)
       });
+      // Register callbacks after receiving VDA5050 connection message
+      // and invoking SDK `connectRobot  method. This prevents `getRobotSession`
+      // to throw an Error caused by an non-existing robot session on the session pool.  
+      for (const [topic, func] of Object.entries(this.callbacks)) {
+        await this.#inorbit.registerCallback(robotId, topic, func);
+      };
     } else {
       return this.#inorbit.disconnectRobot(this.generateInorbitId(manufacturer, serialNumber));
     }
